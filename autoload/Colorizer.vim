@@ -164,6 +164,7 @@ let s:w3c_color_names = {
 \ 'lightyellow': '#FFFFE0',
 \ 'lime': '#00FF00',
 \ 'limegreen': '#32CD32',
+\ 'testTest': '#0000FF',
 \ 'linen': '#FAF0E6',
 \ 'magenta': '#FF00FF',
 \ 'maroon': '#800000',
@@ -1105,6 +1106,11 @@ function! s:ColorInit(...) "{{{1
         else
             let s:colors = s:xterm_8colors
         endif
+
+        if exists("g:colorizer_custom_colors")
+            call extend(s:colors, g:colorizer_custom_colors)
+        endif
+
         let s:colornamepattern = s:GetColorPattern(keys(s:colors))
         call map(w:match_list, 'v:val.pattern')
     else
